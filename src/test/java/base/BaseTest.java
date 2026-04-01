@@ -8,15 +8,14 @@ public class BaseTest {
     public static WebDriver driver;
 
     public void initializeDriver() {
-        WebDriverManager.chromedriver().setup(); // auto setup driver
-        driver = new ChromeDriver();             // launch browser
-        driver.manage().window().maximize();     // maximize window
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
     }
 
     public void quitDriver() {
         if (driver != null) {
-            driver.quit(); // close browser
+            driver.quit();
         }
     }
 }
-//done

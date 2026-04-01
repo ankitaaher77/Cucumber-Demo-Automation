@@ -7,12 +7,12 @@ import io.cucumber.java.Before;
 public class Hooks extends BaseTest {
     @Before
     public void setUp() {
-        initializeDriver();
+        initializeDriver(); // opens browser
     }
 
     @After
     public void tearDown() {
-        quitDriver();
+        quitDriver(); // closes browser
     }
 }
 
