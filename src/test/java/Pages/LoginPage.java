@@ -1,40 +1,52 @@
 package Pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LoginPage {
     WebDriver driver;
-            public LoginPage(WebDriver driver){
-                this.driver = driver;
-            }
+    WebDriverWait wait;
 
-            By email = By.xpath("//input[@placeholder=\"Enter Email Address\"]");
-            By password = By.xpath(" //input[@placeholder=\"Enter Password\"]");
-            By loginButton = By.xpath(" //button[@class=\"btn-htc btn-medium\"]");
+    @FindBy(xpath = "//input[@placeholder='Enter Email Address']")
+    private WebElement emailInput;
+
+    @FindBy(xpath = "//input[@placeholder='Enter Password']")
+    private WebElement passwordInput;
+
+    @FindBy(xpath = "//button[@class='btn-htc btn-medium']")
+    private WebElement loginButton;
+
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    }
 
     public void enterEmail(String emailId) {
-        driver.findElement(email).sendKeys(emailId);
+        wait.until(ExpectedConditions.visibilityOf(emailInput));
+        emailInput.clear();
+        emailInput.sendKeys(emailId);
     }
 
     public void enterPassword(String pass) {
-        driver.findElement(password).sendKeys(pass);
+        wait.until(ExpectedConditions.elementToBeClickable(loginButton));
+        passwordInput.clear();
+        passwordInput.sendKeys(pass);
     }
 
     public void clickLogin() {
-        driver.findElement(loginButton).click();
+        loginButton.click();
     }
-
-
-//DONE
-
-
-
-
-
-
-
-
-
-
+    
+    public void loginAs(String emailId, String pass) {
+        enterEmail(emailId);
+        enterPassword(pass);
+        clickLogin();
+    }
 }

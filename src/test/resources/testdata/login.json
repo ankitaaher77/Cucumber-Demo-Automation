@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "email": "biba@yopmail.com",
+      "password": "Test@123"
+    },
+    {
+      "email": "vela@yopmail.com",
+      "password": "Test@123"
+    },
+    {
+      "email": "vela101@yopmail.com",
+      "password": "Test@123"
+    }
+  ]
+
+}
